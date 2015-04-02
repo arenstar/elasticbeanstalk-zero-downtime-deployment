@@ -33,7 +33,8 @@ if [ ${ISALLOWEDENV} != 0 ]; then
 fi
 
 if [ ${COMMAND} == "clone" ]; then
-    eb clone ${PREFIX}${ENVIRONMENT} -n ${PREFIX}${ENVIRONMENT}${SLAVE_SUFFIX} --timeout 20
+    CNAME=`echo ${PREFIX}${ENVIRONMENT}${SLAVE_SUFFIX} | tr "[:upper:]" "[:lower:]"`
+    eb clone ${PREFIX}${ENVIRONMENT} -n ${PREFIX}${ENVIRONMENT}${SLAVE_SUFFIX} -c ${CNAME} --timeout 20
     exit 0
 elif [ ${COMMAND} == "swap-urls" ]; then
     eb swap ${PREFIX}${ENVIRONMENT} -n ${PREFIX}${ENVIRONMENT}${SLAVE_SUFFIX}
